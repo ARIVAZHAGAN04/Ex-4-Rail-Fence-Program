@@ -20,31 +20,40 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 
 # PROGRAM
 ~~~
-def encrypt_rail_fence(message, rails):
-    length = len(message)
-    rail = [['\n' for _ in range(length)] for _ in range(rails)]
-    row = 0
-    direction = 1
-    for i in range(length):
-        rail[row][i] = message[i]
-        row += direction
-        if row == rails - 1 or row == 0:
-            direction *= -1
-    encrypted = ''
-    for i in range(rails):
-        for j in range(length):
-            if rail[i][j] != '\n':
-                encrypted += rail[i][j]
-    print("Encrypted text:", encrypted)
-def main():
-    message = input("Enter a Secret Message: ").replace(" ", "")
-    rails = int(input("Enter number of rails: "))
-    encrypt_rail_fence(message, rails)
-if __name__ == "__main__":
-    main()
+ #include <stdio.h>
+ #include <string.h>
+ #include <ctype.h>
+ void encryptRailFence(char *message, int rails) {
+ int len = strlen(message);
+ char rail[rails][len];
+ memset(rail, '\n', sizeof(rail));
+ int row = 0, direction = 1;
+ for (int i = 0; i < len; i++) {
+ rail[row][i] = message[i];
+ row += direction;
+ if (row == rails- 1 | row == 0)
+ direction =-direction;
+ }
+ printf("Encrypted text: ");
+ for (int i = 0; i < rails; i++)
+ for (int j = 0; j < len; j++)
+ if (rail[i][j] != '\n')
+ printf("%c", rail[i][j]);
+ printf("\n");
+ }
+ int main() {
+ char message[100];
+ int rails;
+ printf("Enter a Secret Message: ");
+ scanf("%s", message);
+ printf("Enter number of rails: ");
+ scanf("%d", &rails);
+ encryptRailFence(message, rails);
+ return 0;
+ }
 ~~~
 # OUTPUT
-<img width="1920" height="987" alt="Screenshot 2025-09-12 131550" src="https://github.com/user-attachments/assets/a242f749-ff8a-422e-9dfa-5d466e27d72b" />
+![Uploading Screenshot 2025-10-30 at 10.22.42 PM.png…]()
 
 # RESULT
 the program is executed successfully
